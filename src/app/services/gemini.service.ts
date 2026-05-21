@@ -65,45 +65,26 @@ export class GeminiService {
   }
 
   private async sendRequestWithFallback(payload: unknown): Promise<GeminiResponse> {
-    let lastError: Error | null = null;
+  return await this.fetchModelResponse(payload);
+}
 
-    for (const model of this.modelCandidates) {
-      try {
-        return await this.fetchModelResponse(model, payload);
-      } catch (error) {
-        lastError = error instanceof Error ? error : new Error(String(error));
-        if (this.isRetryableError(error)) {
-          await this.delay(1200);
-          continue;
-        }
-        throw lastError;
-      }
-    }
+  private async fetchModelResponse(payload: unknown): Promise<GeminiResponse> {
+  const response = await fetch('/api/chat', {  // ✅ your own backend
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
 
-    throw lastError ?? new Error('Gemini request failed for all models.');
+  const result = (await response.json()) as GeminiResponse;
+
+  if (!response.ok) {
+    const error = new Error(result.error?.message || `HTTP ${response.status}`);
+    (error as any).retryable = response.status === 503 || response.status === 429;
+    throw error;
   }
 
-  private async fetchModelResponse(model: string, payload: unknown): Promise<GeminiResponse> {
-    const response = await fetch(
-      `${this.endpointBase}${model}:generateContent?key=${environment.geminiApiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }
-    );
-
-    const result = (await response.json()) as GeminiResponse;
-
-    if (!response.ok) {
-      console.error(`Gemini API error for model ${model}:`, result);
-      const error = new Error(result.error?.message || `HTTP ${response.status}`);
-      (error as any).retryable = response.status === 503 || response.status === 429;
-      throw error;
-    }
-
-    return result;
-  }
+  return result;
+}
 
   private isRetryableError(error: unknown): boolean {
     return !!(error && typeof error === 'object' && 'retryable' in error && (error as any).retryable);
