@@ -1,0 +1,4 @@
+{
+  "buildCommand": "echo \"export const environment = { production: true, geminiApiKey: '$GEMINI_API_KEY' };\" > src/environments/environment.ts && npm run build",
+  "outputDirectory": "dist/ai-chat-angular/browser"
+}
