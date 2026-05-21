@@ -1,4 +1,7 @@
 {
   "buildCommand": "node setup-env.js && npm run build",
-  "outputDirectory": "dist/ai-chat-app"
+  "outputDirectory": "dist/ai-chat-app",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
