@@ -1,0 +1,63 @@
+<div class="chat-wrapper">
+    <!-- Header -->
+    <div class="chat-header">
+        <div class="header-left">
+            <div class="ai-avatar">AI</div>
+        </div>
+        <div>
+            <h2>Akiro AI</h2>
+            <span class="status">🟢 Online</span>
+        </div>
+    </div>
+
+    <!-- Messages Area -->
+    <div class="message-container" #scrollContainer>
+    <div class="welcome" >
+        <h3>Welcome to Akiro AI!</h3>
+        <p>Ask me anything or start a conversation.</p>
+        <p>This is a simple chat interface for interacting with Akiro AI.</p>
+        <p>Developed by <a class="developerInfo" href="https://www.linkedin.com/in/udaynand" target="_blank">Uday Nand</a></p>
+    </div>
+<!-- Messages -->
+<div *ngFor="let message of messages"
+         class="message-wrapper"
+         [class.user-wrapper]="message.role === 'user'"
+         [class.ai-wrapper]="message.role === 'ai'">
+      <div class="avatar" *ngIf="message.role === 'ai'">AI</div>
+      <div class="avatar user-avatar" *ngIf="message.role === 'user'">U</div>
+      <div class="message-bubble"
+           [class.user-bubble]="message.role === 'user'"
+           [class.ai-bubble]="message.role === 'ai'">
+        {{ message.content }}
+      </div>
+
+    </div>
+
+    <!-- Typing Indicator -->
+    <div class="message-wrapper ai-wrapper" *ngIf="isLoading">
+      <div class="avatar">AI</div>
+      <div class="ai-bubble typing">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="input-area">
+    <div class="input-wrapper">
+      <textarea
+        [(ngModel)]="userInput"
+        (keydown)="onKeyPress($event)"
+        placeholder="Message Akiro AI..."
+        rows="1"
+        [disabled]="isLoading">
+      </textarea>
+      <button (click)="sendMessage()" [disabled]="isLoading || !userInput.trim()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <!-- <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon> -->
+        </svg>
+      </button>
+    </div>
+    <p class="disclaimer">Akiro AI can make mistakes. Verify important info.</p>
+  </div>

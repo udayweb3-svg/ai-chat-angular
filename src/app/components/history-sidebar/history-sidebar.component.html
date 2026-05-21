@@ -1,0 +1,54 @@
+<div class="history-sidebar">
+  <!-- Header -->
+  <div class="sidebar-header">
+    <h3>Chat History</h3>
+    <button class="new-chat-btn" (click)="createNewChat()" title="New Chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Sessions List -->
+  <div class="sessions-list">
+    <div
+      *ngFor="let session of sessions"
+      class="session-item"
+      [class.active]="session.id === currentSessionId"
+      (click)="selectSession(session)">
+      <div class="session-info">
+        <div class="session-title">{{ session.title }}</div>
+        <div class="session-date">{{ formatDate(session.updatedAt) }}</div>
+      </div>
+      <button
+        class="delete-btn"
+        (click)="deleteSession(session.id, $event)"
+        title="Delete chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          <line x1="10" y1="11" x2="10" y2="17"></line>
+          <line x1="14" y1="11" x2="14" y2="17"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Clear All Button -->
+  <div class="sidebar-footer">
+    <button class="clear-all-btn" (click)="clearAll()">Clear All</button>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="confirm-modal" *ngIf="showConfirmDelete">
+    <div class="modal-content">
+      <h4>Delete Chat?</h4>
+      <p>This action cannot be undone.</p>
+      <div class="modal-buttons">
+        <button class="confirm-btn" (click)="confirmDelete()">Delete</button>
+        <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

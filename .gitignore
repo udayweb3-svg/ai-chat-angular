@@ -40,3 +40,30 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.angular/
+
+# Environment files (KEEP YOUR API KEY SAFE)
+src/environments/environment.ts
+src/environments/environment.development.ts
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Env files
+.env
+.env.local
