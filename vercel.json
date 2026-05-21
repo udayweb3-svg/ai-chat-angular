@@ -1,7 +1,8 @@
 {
   "buildCommand": "node setup-env.js && npm run build",
-  "outputDirectory": "dist/ai-chat-app",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "outputDirectory": "dist/ai-chat-app/browser",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
