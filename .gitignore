@@ -51,6 +51,7 @@ dist/
 # Environment files (KEEP YOUR API KEY SAFE)
 src/environments/environment.ts
 src/environments/environment.development.ts
+src/environments/.env
 
 # OS files
 .DS_Store
