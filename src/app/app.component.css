@@ -3,13 +3,107 @@
   width: 100%;
   height: 100vh;
   background-color: #212121;
+  position: relative;
+}
+
+.sidebar-wrapper {
+  flex-shrink: 0;
+  transition: transform 0.3s ease, visibility 0.3s ease, width 0.3s ease;
+  transform: translateX(0);
+  visibility: visible;
+  width: 280px;
+}
+
+.sidebar-wrapper.open {
+  transform: translateX(0);
+  visibility: visible;
+  width: 280px;
+}
+
+.sidebar-wrapper:not(.open) {
+  transform: translateX(-100%);
+  visibility: hidden;
+  width: 0;
 }
 
 app-history-sidebar {
+  display: block;
   flex-shrink: 0;
 }
 
 app-chat {
   flex: 1;
   overflow: hidden;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 767px) {
+  .app-container {
+    position: relative;
+  }
+
+  .sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    width: 280px;
+    transform: translateX(-100%);
+    visibility: hidden;
+  }
+
+  .sidebar-wrapper.open {
+    transform: translateX(0);
+    visibility: visible;
+    width: 280px;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  app-chat {
+    flex: 1;
+  }
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .sidebar-overlay {
+    display: none;
+  }
+
+  .sidebar-wrapper {
+    position: relative;
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .sidebar-wrapper:not(.open) {
+    transform: translateX(0);
+    visibility: hidden;
+    width: 0;
+  }
 }

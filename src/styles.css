@@ -6,3 +6,16 @@ html, body {
     height: 100%;
     overflow: hidden;
 }
+
+/* Global responsive adjustments */
+@media (max-width: 767px) {
+    html, body {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    html, body {
+        font-size: 13px;
+    }
+}
