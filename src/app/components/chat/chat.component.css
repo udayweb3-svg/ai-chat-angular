@@ -200,7 +200,6 @@ button svg { width: 16px; height: 16px; }
   button svg { width: 14px; height: 14px; }
 }
 
-<<<<<<< HEAD
 button:active:not(:disabled) {
   transform: scale(0.98);
 }
@@ -210,7 +209,8 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button.svg, .hamburger-btn svg {
+.hamburger-btn svg,
+button svg {
   width: 16px;
   height: 16px;
 }
@@ -235,11 +235,6 @@ button.svg, .hamburger-btn svg {
 
 .hamburger-btn:active {
   transform: scale(0.98);
-}
-
-button svg {
-  width: 16px;
-  height: 16px;
 }
 
 .disclaimer {
@@ -307,24 +302,9 @@ textarea {
   button svg { width: 16px; height: 16px; }
 }
 
-
 /* Global reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-=======
-@media (max-width: 480px) {
-  .chat-header { padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
-  .header-left { gap: 8px; }
-  .chat-header h2 { font-size: 13px; }
-  .message-container { padding: 12px; gap: 10px; }
-  .message-bubble { max-width: 95%; padding: 10px 14px; font-size: 13px; }
-  .avatar { width: 26px; height: 26px; font-size: 10px; }
-  .input-area { padding: 10px 12px 16px; }
-  .input-wrapper { padding: 5px 6px; gap: 4px; }
-  textarea { font-size: 13px; max-height: 100px; }
-  button { width: 30px; height: 30px; }
-  button svg { width: 13px; height: 13px; }
->>>>>>> 6d1053a368906491227b5d5f44d68f75a4f180f7
 }
