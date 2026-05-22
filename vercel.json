@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "node setup-env.js && npm run build",
   "outputDirectory": "dist/ai-chat-app/browser",
   "routes": [
     { "handle": "filesystem" },
