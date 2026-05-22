@@ -69,7 +69,7 @@ export class GeminiService {
 }
 
   private async fetchModelResponse(payload: unknown): Promise<GeminiResponse> {
-  const response = await fetch('/api/chat', {  // ✅ your own backend
+  const response = await fetch('/api/chat', { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
