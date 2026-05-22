@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewChecked, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewChecked, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { GeminiService, message } from '../../services/gemini.service';
@@ -16,6 +16,8 @@ export class ChatComponent implements AfterViewChecked, OnInit {
 private shouldScroll = false;
 private isStreamingMessage = false;
 
+@Output() toggleSidebar = new EventEmitter<void>();
+
 messages: message[] = [];
 userInput: string = '';
 isLoading: boolean = false;
@@ -25,6 +27,10 @@ constructor(
   private geminiService: GeminiService,
   private historyService: ChatHistoryService
 ) {}
+
+onToggleSidebar(): void {
+  this.toggleSidebar.emit();
+}
 
 ngOnInit(): void {
   // Listen to current session changes
