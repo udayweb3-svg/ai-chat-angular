@@ -13,4 +13,15 @@ import { HistorySidebarComponent } from "./components/history-sidebar/history-si
 })
 export class AppComponent {
   title = 'ai-chat-app';
+  sidebarOpen = true;
+
+  toggleSidebar(): void {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  closeSidebar(): void {
+    if (window.innerWidth < 768) {
+      this.sidebarOpen = false;
+    }
+  }
 }

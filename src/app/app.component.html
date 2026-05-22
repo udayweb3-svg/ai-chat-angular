@@ -1,5 +1,13 @@
-<div class="app-container">
-  <app-history-sidebar></app-history-sidebar>
-  <app-chat></app-chat>
+<div class="app-container" [class.sidebar-closed]="!sidebarOpen">
+  <!-- Overlay for mobile -->
+  <div class="sidebar-overlay" *ngIf="sidebarOpen" (click)="closeSidebar()"></div>
+  
+  <!-- Sidebar -->
+  <div class="sidebar-wrapper" [class.open]="sidebarOpen">
+    <app-history-sidebar></app-history-sidebar>
+  </div>
+  
+  <!-- Main chat area -->
+  <app-chat (toggleSidebar)="toggleSidebar()"></app-chat>
   <router-outlet></router-outlet>
 </div>
