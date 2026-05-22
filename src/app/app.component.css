@@ -20,6 +20,7 @@
 }
 
 app-history-sidebar {
+  display: block;
   flex-shrink: 0;
 }
 
