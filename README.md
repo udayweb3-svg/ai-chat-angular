@@ -8,7 +8,7 @@
 
 A production-ready conversational AI chat application built with **Angular 17** and the **Google Gemini API**. Features multi-turn conversation memory, secure API key handling via serverless proxy, and CI/CD deployment on Vercel.
 
-**🔗 Live Demo:** [akiroai-udaynand.vercel.app](https://akiroai-udaynand.vercel.app)
+**🔗 Live Demo:** [[akiroai-udaynand.vercel.app](https://akiroai-udaynand.vercel.app)]
 
 ---
 
